@@ -33,7 +33,25 @@
 # Install the MongoDB packages and associated tools.
 #
 # sudo yum install mongodb-org
-#
+
+
+file 'etc/yum.repos.d/mongodb.repo' do
+  content '[mongodb]
+name=MongoDB Repository
+baseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/
+gpgcheck=0enabled=1'
+  owner 'root'
+  group 'root'
+  mode '0755'
+end
+
+yum_package 'mongodb.repo' do
+  action :upgrade
+end
+
+
+~                         
+
 #
 # Start MongoDB.
 #
