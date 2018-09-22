@@ -32,3 +32,9 @@ service 'mongod' do
   action [:enable,:start]
 end
 
+
+
+#Resources used: 
+#1)https://learn.chef.io/modules/learn-the-basics/rhel/virtualbox/set-up-a-machine-to-manage#/
+#   CentOS7 + Vagrant + VirtualBox + ChefSDK + Vim
+#2)https://docs.chef.io/resource_reference.html
