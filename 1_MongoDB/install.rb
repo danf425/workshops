@@ -11,52 +11,24 @@
 #
 # This file is an example of steps 1 and 2 above.
 ##########################################################################
-#
+
 
 # Create a /etc/yum.repos.d/mongodb.repo file to hold the following configuration information for the MongoDB repository:
-#
-# If you are running a 64-bit system, use the following configuration:
-#
-# [mongodb]
-# name=MongoDB Repository
-# baseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/
-# gpgcheck=0
-# enabled=1
-# If you are running a 32-bit system, which is not recommended for production deployments, use the following configuration:
-#
-# [mongodb]
-# name=MongoDB Repository
-# baseurl=http://downloads-distro.mongodb.org/repo/redhat/os/i686/
-# gpgcheck=0
-# enabled=1
-#
-# Install the MongoDB packages and associated tools.
-#
-# sudo yum install mongodb-org
-
-
-file 'etc/yum.repos.d/mongodb.repo' do
+file 'etc/yum.repos.d/mongodb-org.repo' do
   content '[mongodb]
 name=MongoDB Repository
-baseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/
-gpgcheck=0enabled=1'
-  owner 'root'
-  group 'root'
-  mode '0755'
+baseurl=http://downloads-distro.mongodb.org/repo/redhat/os/i686/
+gpgcheck=0
+enabled=1'
 end
 
-yum_package 'mongodb.repo' do
+# Install the MongoDB packages and associated tools.
+yum_package 'mongodb-org' do
   action :upgrade
 end
 
+# Start MongoDB + ensure that MongoDB will start following a system reboot
+service 'mongod' do
+  action [:enable,:start]
+end
 
-~                         
-
-#
-# Start MongoDB.
-#
-# sudo service mongod start
-#
-# ensure that MongoDB will start following a system reboot by issuing the following command:
-#
-# sudo chkconfig mongod on#
