@@ -9,8 +9,8 @@ Option 1:
 * Test Module 2 by running cmd: `sudo chef-client --local-mode 2_Tomcat/recipes/default.rb`
 
 Option 2:
-* Manually download/copy from 1_MongoDB/recipes/default.rb & 2_Tomcat/recipes/default.rb
-* Paste them in your local CENTOS7 syste,
+* Manually download/copy from `1_MongoDB/recipes/default.rb` & `2_Tomcat/recipes/default.rb`
+* Paste them in your local CENTOS7 system
 * Run them with the same cmd: `sudo chef-client --local-mode YOUR_FILE_NAME`
 
 

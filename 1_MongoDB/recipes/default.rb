@@ -33,29 +33,35 @@ yum_package 'mongodb-org' do
   action :upgrade
 end
 
-# Start MongoDB + ensure that MongoDB will start following a system reboot
-service 'mongod' do
-  action [:enable,:start]
-end
-
 ##INSTALLATION/SETUP FOR UBUNTU
 when 'ubuntu'
 ###UBUNTU-14.04-TRUSTY
-bash 'install_ubuntu' do
-  code <<-EOH
-apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
-echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list
-apt-get update
-apt-get install -y mongodb-org
-EOH
+apt_repository 'mongodb-org' do
+  uri 'https://repo.mongodb.org/apt/ubuntu'
+  components   ['multiverse']
+  distribution 'trusty'
+  key '9DA31620334BD75D9DCB49F368818C72E52529D4'
+  keyserver 'hkp://keyserver.ubuntu.com:80'
+  action :add
+  deb_src true
 end
 
+apt_update
+
+apt_package "mongodb-org" do 
+  action :upgrade
+end
+
+end
+
+case node['platform']
+when 'redhat','centos','ubuntu'
 # Start MongoDB + ensure that MongoDB will start following a system reboot
 service 'mongod' do
   action [:enable,:start]
 end
-
 end
+
 
 
 #Resources used: 
