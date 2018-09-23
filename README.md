@@ -1,15 +1,17 @@
 
 # Chef SA Workshops
 
-##Options for running each module.
+## Options for running each module.
+
 Option 1: 
-*Clone the git repository.
-*Test Module 1 by running cmd: `sudo chef-client --local-mode 1_MongoDB/recipes/default.rb`
-*Test Module 2 by running cmd: `sudo chef-client --local-mode 2_Tomcat/recipes/default.rb`
+* Clone the git repository.
+* Test Module 1 by running cmd: `sudo chef-client --local-mode 1_MongoDB/recipes/default.rb`
+* Test Module 2 by running cmd: `sudo chef-client --local-mode 2_Tomcat/recipes/default.rb`
+
 Option 2:
-*Manually download/copy from 1_MongoDB/recipes/default.rb & 2_Tomcat/recipes/default.rb
-*Paste them in your local CENTOS7 syste,
-*Run them with the same cmd: `sudo chef-client --local-mode YOUR_FILE_NAME`
+* Manually download/copy from 1_MongoDB/recipes/default.rb & 2_Tomcat/recipes/default.rb
+* Paste them in your local CENTOS7 syste,
+* Run them with the same cmd: `sudo chef-client --local-mode YOUR_FILE_NAME`
 
 
 
