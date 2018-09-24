@@ -87,7 +87,7 @@ when 'redhat', 'centos'
 			  Install: {
 				WantedBy:'multi-user.target',
 			  }})
-	  action [:create, :reload, :start, :enable]
+	  action [:stop, :create, :reload, :start, :enable]
 	end
 #Install the Systemd Unit File + reload + start + enable FOR UBUNTU
 when 'ubuntu'
@@ -115,6 +115,6 @@ when 'ubuntu'
 			  Install: {
 				WantedBy:'multi-user.target',
 			  }})
-	  action [:create, :reload, :start, :enable]
+	  action [:stop, :create, :reload,  :start, :enable]
 	end
 end
