@@ -12,7 +12,7 @@ when 'redhat', 'centos'
 ##INSTALL JDK1.8 FOR UBUNTU
 when 'ubuntu'
    apt_update
-   apt_package 'openjdk-8-jre' do
+   apt_package 'openjdk-7-jdk' do
 		action :upgrade
 	end
 end
@@ -50,7 +50,7 @@ execute '/tmp/apache-tomcat-8.5.9.tar.gz' do
   not_if { File.exists?("/opt/tomcat/RELEASE-NOTES") }
 end
 
-#chmod
+#chmod -> change permissions (recursive permissions)
 bash 'tomcat_config' do
   code <<-EOH
 chgrp -R tomcat /opt/tomcat
@@ -91,30 +91,37 @@ when 'redhat', 'centos'
 	end
 #Install the Systemd Unit File + reload + start + enable FOR UBUNTU
 when 'ubuntu'
-	systemd_unit 'tomcat.service' do
-	  content({Unit: {
-				Description:'Apache Tomcat Web Application Container',
-				After:'syslog.target network.target',
-			  },
-			  Service: {
-				Type:'forking',
-				Environment:'JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre',
-				Environment:'CATALINA_PID=/opt/tomcat/temp/tomcat.pid',
-				Environment:'CATALINA_HOME=/opt/tomcat',
-				Environment:'CATALINA_BASE=/opt/tomcat',
-				Environment:'CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC',
-				Environment:'JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom',
-				ExecStart:'/opt/tomcat/bin/startup.sh',
-				ExecStop:'/bin/kill -15 $MAINPID',
-				User:'tomcat',
-				Group:'tomcat',
-				UMask:'0007',
-				RestartSec:10,
-				Restart:'always',
-			  },
-			  Install: {
-				WantedBy:'multi-user.target',
-			  }})
-	  action [:stop, :create, :reload,  :start, :enable]
-	end
+
+#Using ubuntu 14.04, which isn't fully compatible with systemd 
+#instructions from https://poweruphosting.com/blog/install-tomcat-8-ubuntu/
+file 'etc/yum.repos.d/mongodb-org.repo' do
+  content 'description "Tomcat Server"
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+respawn
+respawn limit 10 5
+
+setuid tomcat
+setgid tomcat
+
+env JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/jre
+env CATALINA_HOME=/opt/tomcat
+
+# Modify these options as needed
+env JAVA_OPTS="-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom"
+env CATALINA_OPTS="-Xms512M -Xmx1024M -server -XX:+UseParallelGC"
+
+exec $CATALINA_HOME/bin/catalina.sh run
+
+# cleanup temp directory after stop
+post-stop script
+  rm -rf $CATALINA_HOME/temp/*
+end script'
+end				
+
+service "tomcat" do
+  action [:stop,:reload, :start, :enable]
+end
+
 end
