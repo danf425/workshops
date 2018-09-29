@@ -3,17 +3,22 @@
 
 ## Options for running each module.
 
-Option 1: 
-* Clone the git repository.
-* Test Module 1 by running cmd: `sudo chef-client --local-mode 1_MongoDB/recipes/default.rb`
-* Test Module 2 by running cmd: `sudo chef-client --local-mode 2_Tomcat/recipes/default.rb`
+Option 1 (Requires Git. You can install it with the following cmd:  `sudo yum install git`):
+* Clone the git repository: `git clone https://github.com/danf425/workshops.git`
+* MongoDB Module: From the '/workshops/' directory, run this cmd: `sudo chef-client --local-mode 1_MongoDB/recipes/default.rb`
+* Tomcat Module: From the '/workshops/' directory, run this cmd: `sudo chef-client --local-mode 2_Tomcat/recipes/default.rb`
 
 Option 2:
 * Manually download/copy from `1_MongoDB/recipes/default.rb` & `2_Tomcat/recipes/default.rb`
-* Paste them in your local CENTOS7 system
+* Paste them in your local CENTOS7/RHEL7 system
 * Run them with the same cmd: `sudo chef-client --local-mode YOUR_FILE_NAME`
 
+Bonus:
+*Chefspec Test: From the '/workshops/' directory, run this cmd: `sudo chef exec rspec 1_MongoDB/spec/default_spec.rb`
 
+
+Install CentOS on your windows computer with these directions: https://learn.chef.io/modules/learn-the-basics/rhel/virtualbox/set-up-a-machine-to-manage#/
+Install Ubuntu on your windows computer with these directions: https://learn.chef.io/modules/learn-the-basics/ubuntu/virtualbox/set-up-a-machine-to-manage#/
 
 
 ## Instructions
