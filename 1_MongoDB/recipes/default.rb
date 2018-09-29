@@ -36,19 +36,16 @@ end
 ##INSTALLATION/SETUP FOR UBUNTU
 when 'ubuntu'
 ###UBUNTU-14.04-TRUSTY
-apt_repository 'mongodb-org' do
-  uri 'https://repo.mongodb.org/apt/ubuntu'
-  components   ['multiverse']
-  distribution 'trusty'
-  key '9DA31620334BD75D9DCB49F368818C72E52529D4'
-  keyserver 'hkp://keyserver.ubuntu.com:80'
-  action :add
-  deb_src true
+bash 'Public_key+source_list' do
+  code <<-EOH
+apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
+echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-
+org-3.0.list
+apt-get update
+EOH
 end
 
-apt_update
-
-apt_package "mongodb-org" do 
+apt_package "mongodb-org" do
   action :upgrade
 end
 
