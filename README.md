@@ -1,9 +1,9 @@
 
 # Chef SA Workshops
 
-## Options for running each module.
+Modules run on CentOS7 & Ubuntu 14.04
 
-Recommended (Requires Git. You can install it with the following cmd:  `sudo yum install git`):
+Recommended way of running modules (Requires Git): 
 * Clone the git repository: `git clone https://github.com/danf425/workshops.git`
 * MongoDB Module: From the '/workshops/' directory, run this cmd: `sudo chef-client --local-mode 1_MongoDB/recipes/default.rb`
   * Test with cmd: `mongo`
@@ -19,8 +19,21 @@ Optional way of running it:
 * Run them with the same cmd: `sudo chef-client --local-mode YOUR_FILE_NAME`
 
 
-Install CentOS on your windows computer with these directions: https://learn.chef.io/modules/learn-the-basics/rhel/virtualbox/set-up-a-machine-to-manage#/
-Install Ubuntu on your windows computer with these directions: https://learn.chef.io/modules/learn-the-basics/ubuntu/virtualbox/set-up-a-machine-to-manage#/
+Resources: 
+* Installing Git on CentOS7: `sudo yum install git`
+* Installing Git on Ubuntu 14.04: `sudo apt-get install git-core`
+* CentOS7 Installation: https://learn.chef.io/modules/learn-the-basics/rhel/virtualbox/set-up-a-machine-to-manage#/
+* Ubuntu Installation: https://learn.chef.io/modules/learn-the-basics/ubuntu/virtualbox/set-up-a-machine-to-manage#/
+* Chef-systemd_unit: https://docs.chef.io/resource_systemd_unit.html
+* Chef-group: https://docs.chef.io/resource_group.html
+* Chef-user: https://docs.chef.io/resource_user.html
+* Chef-remote_file: https://docs.chef.io/resource_remote_file.html
+* Chef-directory: https://docs.chef.io/resource_directory.html
+* Chef-bash: https://docs.chef.io/resource_bash.html
+* Chef-execute: https://docs.chef.io/resource_execute.html
+* Chef-File: https://docs.chef.io/resource_file.html
+* Chef-yum: https://docs.chef.io/resource_yum_package.html
+* Chef-service: https://docs.chef.io/resource_service.html
 
 
 
