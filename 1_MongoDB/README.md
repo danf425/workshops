@@ -1,12 +1,52 @@
-# Install MongoDB
+# How to run (Runs on CentOS7 & Ubuntu 14.04):
+
+* Clone the git repository: `git clone https://github.com/danf425/workshops.git`
+* MongoDB Module: From the '/workshops/' directory, run this cmd: `sudo chef-client --local-mode 1_MongoDB/recipes/default.rb`
+* To go into MongoDB, run cmd `mongo`
+
+Resources: 
+* CentOS7 Installation: https://learn.chef.io/modules/learn-the-basics/rhel/virtualbox/set-up-a-machine-to-manage#/
+* Ubuntu Installation: https://learn.chef.io/modules/learn-the-basics/ubuntu/virtualbox/set-up-a-machine-to-manage#/
+* Chef-File: https://docs.chef.io/resource_file.html
+* Chef-YUM: https://docs.chef.io/resource_yum_package.html
+* Chef-Service: https://docs.chef.io/resource_service.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------
+# Initial Instruction Below
+----------------------------------------------------------------------------------------------------------------------------------------
+
+Install MongoDB
 
 MongoDB is an open-source, document-oriented database designed for ease of development and scaling.  The MongoDB documentation site includes a [tutorial on how to install MongoDB on RHEL-based system](http://docs.mongodb.org/manual/tutorial/install-mongodb-on-red-hat-centos-or-fedora-linux/).
 
-## Goal
+Goal
 
 Use Chef to successfully install MongoDB on a RHEL-based target system.
 
-## Success Criteria
+Success Criteria
 
 You should be prepared and able to demonstrate the following:
 
@@ -24,7 +64,7 @@ You should be able to explain the following:
 
 >Note: You are NOT required to use Chef Server for this exercise, but you may if that is your preference.
 
-## Instructions
+Instructions
 
 * Translate the MongoDB installation instructions from `install.rb` into Chef code that completes the installation
 * Use the Chef [Resources Reference](https://docs.chef.io/resources.html) to find the most appropriate Chef resources to use for each task
@@ -39,7 +79,7 @@ There are a couple of ways that you can write, test and run your cookbook.
   * Write your cookbook in vim, nano or emacs, and run `chef-client` in `--local-mode`
   * The ChefDK or Chef Client must be installed on the VM first
 
-## Suggested Resources
+Suggested Resources
 
 * Use the [Chef Documentation](http://docs.chef.io) to identify and use resources that will help you model the desired state of your infrastructure.
 * [MongoDB Installation Instructions](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/)
