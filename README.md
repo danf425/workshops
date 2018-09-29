@@ -6,9 +6,9 @@
 Recommended (Requires Git. You can install it with the following cmd:  `sudo yum install git`):
 * Clone the git repository: `git clone https://github.com/danf425/workshops.git`
 * MongoDB Module: From the '/workshops/' directory, run this cmd: `sudo chef-client --local-mode 1_MongoDB/recipes/default.rb`
- * Test with cmd: `mongo`
+  * Test with cmd: `mongo`
 * Tomcat Module: From the '/workshops/' directory, run this cmd: `sudo chef-client --local-mode 2_Tomcat/recipes/default.rb`
- * Test with cmd: `curl http://localhost:8080`
+  * Test with cmd: `curl http://localhost:8080`
 
 Bonus:
 * Chefspec Test: From the '/workshops/' directory, run this cmd: `sudo chef exec rspec 1_MongoDB/spec/default_spec.rb`
