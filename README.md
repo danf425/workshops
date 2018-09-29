@@ -3,25 +3,37 @@
 
 ## Options for running each module.
 
-Option 1 (Requires Git. You can install it with the following cmd:  `sudo yum install git`):
+Recommended (Requires Git. You can install it with the following cmd:  `sudo yum install git`):
 * Clone the git repository: `git clone https://github.com/danf425/workshops.git`
 * MongoDB Module: From the '/workshops/' directory, run this cmd: `sudo chef-client --local-mode 1_MongoDB/recipes/default.rb`
+ ** Test with cmd: `mongo`
 * Tomcat Module: From the '/workshops/' directory, run this cmd: `sudo chef-client --local-mode 2_Tomcat/recipes/default.rb`
-
-Option 2:
-* Manually download/copy from `1_MongoDB/recipes/default.rb` & `2_Tomcat/recipes/default.rb`
-* Paste them in your local CENTOS7/RHEL7 system
-* Run them with the same cmd: `sudo chef-client --local-mode YOUR_FILE_NAME`
+ ** Test with cmd: `curl http://localhost:8080`
 
 Bonus:
 * Chefspec Test: From the '/workshops/' directory, run this cmd: `sudo chef exec rspec 1_MongoDB/spec/default_spec.rb`
+
+Optional way of running it:
+* Manually download/copy from `1_MongoDB/recipes/default.rb` & `2_Tomcat/recipes/default.rb`
+* Paste them in your local CENTOS7/RHEL7 system
+* Run them with the same cmd: `sudo chef-client --local-mode YOUR_FILE_NAME`
 
 
 Install CentOS on your windows computer with these directions: https://learn.chef.io/modules/learn-the-basics/rhel/virtualbox/set-up-a-machine-to-manage#/
 Install Ubuntu on your windows computer with these directions: https://learn.chef.io/modules/learn-the-basics/ubuntu/virtualbox/set-up-a-machine-to-manage#/
 
 
-## Instructions
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------
+Initial Instructions Below
+----------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+Instructions
 
 Complete the mandatory workshops below. These may be completed in any order, but it the recommendation is `1_MongoDB` then `2_Tomcat`.
 
@@ -33,7 +45,7 @@ Each workshop includes instructions stating the goal of the workshop, the succes
 
 If the first two workshops are completed successfully, additional bonus material from `3_Bonus` may be completed.  This is extra credit material and additional consideration will be given if it is attempted and/or completed successfully.
 
-## Expectations
+Expectations
 
 There are no correct or incorrect working solutions to each of the workshops.  If the participant's solution meets the defined success criteria, that is a correct solution.  Each individual is expected to use their own experiences and approach to solving the task at hand.
 
@@ -46,7 +58,7 @@ There are no correct or incorrect working solutions to each of the workshops.  I
   * Be prepared to explain your approach and thought process for building the cookbooks
   * Be prepared to present your working solutions by demonstrating successful `chef-client` runs
 
-## Projects Included
+Projects Included
 
 * **1_MongoDB:**  Install the software on the target system
 * **2_Tomcat:**  Install and configure the Apache Tomcat Java application server on the target system
@@ -55,7 +67,7 @@ There are no correct or incorrect working solutions to each of the workshops.  I
     * Awesome Appliance Repair - A simple, python-based web application that utilizes Apache for a web server and MySQL for a database.
     * Middleman - A static site generator using all the shortcuts and tools in modern web development. It is a ruby (sinatra) application.
 
-## Pre-requisites
+Pre-requisites
 
 You will need some experience using Chef such as:
 
