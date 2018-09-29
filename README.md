@@ -14,7 +14,7 @@ Option 2:
 * Run them with the same cmd: `sudo chef-client --local-mode YOUR_FILE_NAME`
 
 Bonus:
-*Chefspec Test: From the '/workshops/' directory, run this cmd: `sudo chef exec rspec 1_MongoDB/spec/default_spec.rb`
+* Chefspec Test: From the '/workshops/' directory, run this cmd: `sudo chef exec rspec 1_MongoDB/spec/default_spec.rb`
 
 
 Install CentOS on your windows computer with these directions: https://learn.chef.io/modules/learn-the-basics/rhel/virtualbox/set-up-a-machine-to-manage#/
