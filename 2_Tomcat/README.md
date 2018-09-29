@@ -1,4 +1,51 @@
-# Install and Configure Apache Tomcat
+# How to run (Runs on CentOS7 & Ubuntu 14.04):
+
+* Clone the git repository: `git clone https://github.com/danf425/workshops.git`
+* TomCat Module: From the '/workshops/' directory, run this cmd: `sudo chef-client --local-mode 2_Tomcat/recipes/default.rb`
+* To test Tomcat, run cmd `curl http://localhost:8080`
+
+Resources: 
+* CentOS7 Installation: https://learn.chef.io/modules/learn-the-basics/rhel/virtualbox/set-up-a-machine-to-manage#/
+* Ubuntu Installation: https://learn.chef.io/modules/learn-the-basics/ubuntu/virtualbox/set-up-a-machine-to-manage#/
+* Chef-systemd_unit: https://docs.chef.io/resource_systemd_unit.html
+* Chef-group: https://docs.chef.io/resource_group.html
+* Chef-user: https://docs.chef.io/resource_user.html
+* Chef-remote_file: https://docs.chef.io/resource_remote_file.html
+* Chef-directory: https://docs.chef.io/resource_directory.html
+* Chef-bash: https://docs.chef.io/resource_bash.html
+* Chef-execute: https://docs.chef.io/resource_execute.html
+* Chef-File: https://docs.chef.io/resource_file.html
+* Chef-yum: https://docs.chef.io/resource_yum_package.html
+* Chef-service: https://docs.chef.io/resource_service.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+Initial Instructions Below
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+Install and Configure Apache Tomcat
 
 The [Apache Tomcat®](http://tomcat.apache.org/) software is an open source implementation of the Java Servlet, JavaServer Pages, Java Expression Language and Java WebSocket technologies. The Java Servlet, JavaServer Pages, Java Expression Language and Java WebSocket specifications are developed under the Java Community Process.
 
