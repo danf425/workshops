@@ -12,8 +12,7 @@ when 'ubuntu'
 apt_update
 
 # Build Ruby
-package %w(build-essential libssl-dev libyaml-dev libreadline-dev openssl curl git-core zlib1g-dev bison libxml2-dev libxslt1-dev libcurl4-openssl-dev nodejs libsqlite3-dev sqlite3)
-do
+package %w(build-essential libssl-dev libyaml-dev libreadline-dev openssl curl git-core zlib1g-dev bison libxml2-dev libxslt1-dev libcurl4-openssl-dev nodejs libsqlite3-dev sqlite3) do
     action :upgrade
 end
 
@@ -47,7 +46,7 @@ end
 
 #create blog.conf for apache
 file '/tmp/blog.conf' do
-  content '# /etc/apache2/sites-enabled/blog.conf
+  content "# /etc/apache2/sites-enabled/blog.conf
 
 LoadModule proxy_module modules/mod_proxy.so
 LoadModule proxy_http_module modules/mod_proxy_http.so
@@ -70,7 +69,7 @@ ProxyRequests Off
   ProxyPass / http://localhost:3000/
   ProxyPassReverse / http://localhost:3000/
 
-</VirtualHost>'
+</VirtualHost>"
 end
 
 #Configure apache
