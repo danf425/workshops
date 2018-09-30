@@ -97,14 +97,83 @@ end
 #  action :sync
 #end
 
-bash "Clone the repo" do
+bash "clone-repo+bundler+thin" do
   code <<-EOH
-  git clone https://github.com/learnchef/middleman-blog.git
-  cd middleman-blog
-  EOH
+git clone https://github.com/learnchef/middleman-blog.git
+cd middleman-blog
+gem install bundler
+bundle install
+thin install
+/usr/sbin/update-rc.d -f thin defaults
+EOH
 end
 
+#Fix thin/blog.conf
+file '/etc/thin/blog.yml' do
+  content "# /etc/thin/blog.yml
+pid: tmp/pids/thin.pid
+log: log/thin.log
+timeout: 30
+max_conns: 102
+port: 3000
+max_persistent_conns: 512
+chdir: /home/blog
+environment: development
+servers: 1
+address: 0.0.0.0
+daemonize: true"
+end
 
+#Fix /etc/apache2/sites-enabled/blog.conf
+file '/etc/apache2/sites-enabled/blog.conf' do
+  content "# /etc/init.d/thin
+
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          thin
+# Required-Start:    $local_fs $remote_fs
+# Required-Stop:     $local_fs $remote_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      S 0 1 6
+# Short-Description: thin initscript
+# Description:       thin
+### END INIT INFO
+
+# Original author: Forrest Robertson
+
+# Do NOT "set -e"
+
+DAEMON=/usr/local/bin/thin
+SCRIPT_NAME=/etc/init.d/thin
+CONFIG_PATH=/etc/thin
+HOME= /home/blog
+
+# Exit if the package is not installed
+[ -x "$DAEMON" ] || exit 0
+
+case "$1" in
+  start)
+  HOME=$HOME $DAEMON start --all $CONFIG_PATH
+  ;;
+  stop)
+  HOME=$HOME $DAEMON stop --all $CONFIG_PATH
+  ;;
+  restart)
+  HOME=$HOME $DAEMON restart --all $CONFIG_PATH
+  ;;
+  *)
+  echo "Usage: $SCRIPT_NAME {start|stop|restart}" >&2
+  exit 3
+  ;;
+esac
+
+:"
+end
+
+#start thin
+service 'thin' do
+  action [:reload, :restart]
+end
 
 end
 
