@@ -16,20 +16,17 @@ package %w(build-essential libssl-dev libyaml-dev libreadline-dev openssl curl g
     action :upgrade
 end
 
-directory '~/ruby' do
-  action :create
-end
-
-remote_file '~/ruby/ruby-2.1.3.tar.gz' do
-    source 'http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.3.tar.gz'
-    notifies :run, "bash[install_ruby]", :immediately
-end
-
 
 bash "install_ruby" do
   code <<-EOH
-tar -xzf ~/ruby/ruby-2.1.3.tar.gz
-(cd ~/ruby/ruby-2.1.3 && ./configure && make install && rm -rf ~/ruby)
+mkdir home/ruby
+cd home/ruby
+wget http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.3.tar.gz
+tar -xzf ruby-2.1.3.tar.gz
+cd ruby-2.1.3
+./configure
+make install
+rm -rf home/ruby
 EOH
 end
 
@@ -43,6 +40,7 @@ end
 apt_package 'apache2' do
     action :install
 end
+
 
 #create blog.conf for apache
 file '/tmp/blog.conf' do
@@ -60,8 +58,8 @@ ProxyRequests Off
 
 
 <VirtualHost *:80>
-  ServerName <%= node['ipaddress'] %>
-  ServerAlias <%= node['ipaddress'] %>
+  ServerName test.localhost
+  ServerAlias test.localhost
 
   ProxyRequests Off
   RewriteEngine On
@@ -78,13 +76,13 @@ bash "configure_apache" do
 a2enmod proxy_http
 a2enmod rewrite
 cp /tmp/blog.conf /etc/apache2/sites-enabled/blog.conf
-rm /etc/apache2/sites-enabled/000-default.conf
+rm /etc/apache2/sites-enabled/000-default.conf || true
 EOH
 end
 
 #restart apache
 service 'apache2' do
-  action :restart
+  action [:reload, :restart]
 end
 
 #Git should already be installed, but upgrade
