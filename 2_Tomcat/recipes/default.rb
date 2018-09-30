@@ -94,7 +94,7 @@ when 'ubuntu'
 
 #Using ubuntu 14.04, which isn't fully compatible with systemd 
 #instructions from https://poweruphosting.com/blog/install-tomcat-8-ubuntu/
-file 'etc/yum.repos.d/mongodb-org.repo' do
+file '/etc/init/tomcat.conf' do
   content 'description "Tomcat Server"
 
 start on runlevel [2345]
