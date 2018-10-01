@@ -13,7 +13,7 @@ Recommended way of running modules (Requires Git):
 Bonus:
 * Module 1 & 2 are ubuntu 14.04 combatible
 * Chefspec Test: From the '/workshops/' directory, run this cmd: `sudo chef exec rspec 1_MongoDB/spec/default_spec.rb`
-* Middleman (Not finished): From the '/workshops/' directory, run this cmd `sudo chef exec rspec 3_Bonus/Middleman/recipes/default.rb`
+* Middleman (Not finished): From the '/workshops/' directory, run this cmd `sudo chef-client --local-mode 3_Bonus/Middleman/recipes/default.rb`
 
 
 Optional way of running it:
