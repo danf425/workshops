@@ -108,7 +108,7 @@ thin install
 EOH
 end
 
-#Fix thin/blog.conf
+#Fix /etc/thin/blog.yml
 file '/etc/thin/blog.yml' do
   content "# /etc/thin/blog.yml
 pid: tmp/pids/thin.pid
@@ -124,8 +124,8 @@ address: 0.0.0.0
 daemonize: true"
 end
 
-#Fix /etc/apache2/sites-enabled/blog.conf
-file '/etc/apache2/sites-enabled/blog.conf' do
+#Fix /etc/init.d/thin
+file '/etc/init.d/thin' do
   content "# /etc/init.d/thin
 
 #!/bin/sh
@@ -141,17 +141,17 @@ file '/etc/apache2/sites-enabled/blog.conf' do
 
 # Original author: Forrest Robertson
 
-# Do NOT "set -e"
+# Do NOT 'set -e'
 
 DAEMON=/usr/local/bin/thin
 SCRIPT_NAME=/etc/init.d/thin
 CONFIG_PATH=/etc/thin
-HOME= /home/blog
+HOME=/home/blog
 
 # Exit if the package is not installed
-[ -x "$DAEMON" ] || exit 0
+[ -x '$DAEMON' ] || exit 0
 
-case "$1" in
+case '$1' in
   start)
   HOME=$HOME $DAEMON start --all $CONFIG_PATH
   ;;
@@ -162,7 +162,7 @@ case "$1" in
   HOME=$HOME $DAEMON restart --all $CONFIG_PATH
   ;;
   *)
-  echo "Usage: $SCRIPT_NAME {start|stop|restart}" >&2
+  echo 'Usage: $SCRIPT_NAME {start|stop|restart}' >&2
   exit 3
   ;;
 esac
